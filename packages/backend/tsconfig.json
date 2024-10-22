@@ -1,0 +1,45 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "target": "es2017",
+    "lib": [
+      "es2017",
+      "esnext.asynciterable",
+      "dom"
+    ],
+    "baseUrl": "src", 
+    "paths": {
+      "@service/*": ["services/*"],
+      "@empowerme/types": ["../../libs/types"]
+    }, 
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/types"
+    ],
+    "strictPropertyInitialization": false,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "pretty": true,
+    "sourceMap": true,
+    "outDir": "./build",
+    "allowJs": true,
+    "noEmit": false,
+    "esModuleInterop": true,
+    "composite": true
+  },
+  "include": ["./src/**/*",   "./test/*"],
+  "exclude": [
+    "node_modules",
+    "tests", 
+    "sdf"
+  ],
+  "references": [ 
+    {  
+      "path": "../libs/types"
+    }
+  ]
+}

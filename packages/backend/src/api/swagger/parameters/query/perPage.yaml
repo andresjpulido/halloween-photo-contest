@@ -1,0 +1,7 @@
+name: per_page
+in: query
+description: Number of items returned by page
+required: false
+schema:
+  type: integer
+  format: int32

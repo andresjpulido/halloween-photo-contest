@@ -1,3 +1,26 @@
 {
-  "extends": "astro/tsconfigs/strict"
+  "compilerOptions": {
+    "target": "ES2015",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "baseUrl": ".",
+    "paths": {
+        "@empowerme/types": ["./packages/libs/types"] 
+    }
+  },
+  "references": [
+    {
+      "path": "./packages/libs/types"
+    },
+    {
+      "path": "./packages/backend"
+    },
+    {
+      "path": "./packages/frontend"
+    }
+  ]
 }

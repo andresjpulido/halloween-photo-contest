@@ -1,0 +1,17 @@
+{
+  "name": "@helloweenphotocontest/types",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js", 
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "module": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint --ext .ts"
+  },
+  "author": "",
+  "license": "MIT"
+}

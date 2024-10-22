@@ -1,0 +1,5 @@
+description: succeful
+content:
+  application/json:
+    schema:
+      $ref : "../schemas/user.yaml"

@@ -1,0 +1,50 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "fe",
+  "main": "app.js",
+  "scripts": {
+    "start": "ts-node -r tsconfig-paths/register ./src/app.ts",
+    "clean": "rm -rf build && mkdir build",
+    "clean-jest": "jest --clearCache && jest  --coverage --watchAll --detectOpenHandles --testTimeout=14000",
+    "populatedb": "npx ts-node ./scripts/loadData.ts",
+    "build": "tsc",
+    "dev": "NODE_ENV=development ts-node-dev -r tsconfig-paths/register --respawn -- src/app.ts",
+    "inspect": "nodemon --inspect src/app.ts",
+    "test": "NODE_TLS_REJECT_UNAUTHORIZED=0 jest --reporters default jest-stare --coverage --detectOpenHandles --no-cache --runInBand --testTimeout=16000",
+    "predev": "swagger-cli bundle src/api/swagger/openapi.yaml --outfile public/swagger.json",
+    "doc:generate": "swagger-cli bundle src/api/swagger/openapi.yaml --outfile public/swagger.json",
+    "lint": "npm run lint:js ",
+    "lint:eslint": "eslint --ext .ts",
+    "lint:js": "npm run lint:eslint src/",
+    "lint:fix": "npm run lint:js -- --fix"
+  },
+  "keywords": [
+    "d"
+  ],
+  "author": "Andres Pulido",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/cookie-parser": "^1.4.7",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/morgan": "^1.9.9",
+    "@types/multer": "^1.4.12",
+    "@types/node": "^22.7.5",
+    "@types/node-rsa": "^1.1.4",
+    "@types/pdfmake": "^0.2.9",
+    "@types/swagger-ui-express": "^4.1.6",
+    "dotenv": "^16.4.5",
+    "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.2.0"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.4",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "morgan": "^1.10.0"
+  }
+}

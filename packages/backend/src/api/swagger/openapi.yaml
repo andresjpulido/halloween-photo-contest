@@ -1,0 +1,23 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Artisan carvins API
+  description: API of Artisan carvins App.
+  license:
+    name: MIT
+  contact:  
+    name: API Creator
+    url: http://www.andresjpulido.com/
+    email: andresjpulido@gmail.com
+servers:
+  - url: http://shop.swagger.io/v1
+  - url: http://localhost/v1
+tags:
+  - name: users
+paths:
+  /users:
+    $ref: "./resources/users.yaml"
+  /orders/{id}:
+    $ref: "./resources/orders2.yaml"
+   
+  

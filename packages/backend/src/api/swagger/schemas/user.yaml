@@ -1,0 +1,9 @@
+type: object
+required:
+  - username
+  - lastlogin
+properties:
+  username:
+    type: string
+  lastlogin:
+    type: string

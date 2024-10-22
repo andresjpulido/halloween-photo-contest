@@ -1,0 +1,7 @@
+name: page
+in: query
+description: Number of page returned
+required: false
+schema:
+  type: integer
+  format: int32

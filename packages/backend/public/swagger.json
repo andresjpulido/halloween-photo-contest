@@ -1,0 +1,161 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Artisan carvins API",
+    "description": "API of Artisan carvins App.",
+    "license": {
+      "name": "MIT"
+    },
+    "contact": {
+      "name": "API Creator",
+      "url": "http://www.andresjpulido.com/",
+      "email": "andresjpulido@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://shop.swagger.io/v1"
+    },
+    {
+      "url": "http://localhost/v1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "users"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "get": {
+        "summary": "List all users",
+        "operationId": "users",
+        "description": "List or users",
+        "tags": [
+          "users"
+        ],
+        "parameters": [
+          {
+            "name": "sort_by",
+            "in": "query",
+            "description": "Firld to sort results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Number of page returned",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "Number of items returned by page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paged array of users",
+            "headers": {
+              "x-next": {
+                "description": "A link to the next page of responses",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "username",
+                      "lastlogin"
+                    ],
+                    "properties": {
+                      "username": {
+                        "type": "string"
+                      },
+                      "lastlogin": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. User ID must be an integer and larger than 0."
+          },
+          "401": {
+            "description": "Authorization information is missing or invalid."
+          },
+          "404": {
+            "description": "A user with the specified ID was not found."
+          },
+          "5XX": {
+            "description": "Unexpected error."
+          },
+          "default": {
+            "description": "Application error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "errorCode": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/{id}": {
+      "get": {
+        "tags": [
+          "orders"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "The user ID"
+          }
+        ]
+      }
+    }
+  }
+}

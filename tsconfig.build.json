@@ -1,0 +1,14 @@
+{
+    "files": [],
+    "references": [ 
+      {
+        "path": "packages/libs/types"
+      }, 
+      {
+        "path": "packages/frontend"
+      },
+       {
+        "path": "packages/backend"
+      },
+    ]
+  }
