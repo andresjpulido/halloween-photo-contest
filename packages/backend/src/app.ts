@@ -15,8 +15,8 @@ if (envFound.error) {
     console.log('⚠️ Couldn\'t find .env file')
 }
 
-app.use(express.static('../frontend/dist'))
- 
+//app.use(express.static('../frontend/dist'))
+app.use(express.static(path.join(__dirname+'../../../../frontend/dist')))
 
 // using morgan for logs
 app.use(morgan('combined'));
@@ -185,13 +185,13 @@ app.delete('/api/products/:id', async (req, res) => {
     res.send("deleted!!")
 
 });
-
-app.get('*', (req,res) =>{
+ 
+app.get('/', (req,res) =>{
     let tmp = path.join(__dirname+'../../../../frontend/dist/index.html')
     console.log(tmp)
     res.sendFile(tmp)
 })
-
+ 
  
 
 app.listen(process.env.PORT || 3000, () => {
