@@ -16,6 +16,7 @@ if (envFound.error) {
 }
 
 app.use(express.static('../frontend/dist'))
+ 
 
 // using morgan for logs
 app.use(morgan('combined'));
@@ -185,8 +186,12 @@ app.delete('/api/products/:id', async (req, res) => {
 });
 
 app.get('*', (req,res) =>{
-    res.sendFile(path.join(__dirname+'../../../../frontend/dist/index.html'))
+    let tmp = path.join(__dirname+'../../../../frontend/dist/index.html')
+    console.log(tmp)
+    res.sendFile(tmp)
 })
+
+ 
 
 app.listen(process.env.PORT || 3000, () => {
     console.log(`> Ready on http://localhost:${process.env.PORT || 3000}`);
