@@ -32,8 +32,7 @@ app.use(express.json({
     verify: undefined
 }))
 
-const supabaseUrl = 'https://rvffpwbcwfdwyqigrelt.supabase.co'
-console.log(process.env.SUPABASE_KEY)
+const supabaseUrl = process.env.SUPABASE_URL?process.env.SUPABASE_URL:"" 
 const supabaseKey = process.env.SUPABASE_KEY?process.env.SUPABASE_KEY:""
 const supabase = createClient(supabaseUrl, supabaseKey)
 
@@ -185,12 +184,10 @@ app.delete('/api/products/:id', async (req, res) => {
 
 });
 
- 
-
 app.get('*', (req,res) =>{
     res.sendFile(path.join(__dirname+'../../../../frontend/dist/index.html'))
 })
 
-app.listen(3000, () => {
-    console.log(`> Ready on http://localhost:3000`);
+app.listen(process.env.PORT || 3000, () => {
+    console.log(`> Ready on http://localhost:${process.env.PORT || 3000}`);
 });
