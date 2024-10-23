@@ -130,6 +130,23 @@ app.post('/api/signin', async (req, res) => {
 
 });
 
+app.put('/api/image/:id', async (req, res) => {
+
+console.log("votes " , req.params.id, req.body.votes, )
+
+
+    const {error} = await supabase
+        .from('image')
+        .update({
+            votes: req.body.votes, 
+        })
+        .eq('id', req.params.id)
+    if (error) {
+        res.send(error);
+    }
+    res.send({votes: req.body.votes});
+});
+
 app.post('/api/user', async (req, res) => {
     const {name, username, password} = req.body
     

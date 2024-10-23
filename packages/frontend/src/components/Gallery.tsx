@@ -1,17 +1,69 @@
  
+import React, {useEffect, useState } from 'react' 
+import AppContext from "../AppContext"
 import "./Gallery.css" 
 import Heart from "./heart"
  
  
 import { useNavigate } from 'react-router-dom'
 
-export default function Gallery (props:any) {
+export default function Gallery ( ) {
  
+  const { images, setImages } = React.useContext(AppContext);
   const navigate = useNavigate() 
-  const participants = props.participants
+ 
+  const isauth = async () => {
+        
+    const url = "/api/image"; 
+    
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`Response status: ${response.status}`);
+        }
+        const imagelist  = await response.json();
+        setImages(imagelist) 
+      } catch (error) {
+        console.error(error );
+      } 
+  } 
+
+  useEffect( ()=> {   
+    isauth() 
+}, []) 
+
+  const vote = async (votes: any, imageId: any) => { 
+      
+    votes = votes + 1
+
+    try {
+      const response = await fetch("/api/image/" + imageId, {
+          headers: {
+              "Content-Type": "application/json",
+            },
+            method: "PUT", 
+          body: JSON.stringify({votes})})
   
-  const vote = (userId: any, imageId: any) => { 
-    console.log(userId,imageId) 
+      if (!response.ok) {
+          //throw new Error(`Response status: ${response.status}`);
+          console.log(response.status)
+      }  
+    
+      const json = await response.json();
+      
+       isauth()
+   
+  
+  } catch(err) { 
+      console.log('catch error ', err)
+  
+  } finally {
+       
+  } 
+
+
+
+
   }
   
   const seeDetail = (imageId:any) =>{ 
@@ -53,7 +105,7 @@ export default function Gallery (props:any) {
 
   <ul className="md:mx-16 projectlist">
     {
-      participants?.map((data:any, index:any) => (
+      images?.map((data:any, index:any) => (
         <li className="project" title={data.url_original} key={index}> 
           <img src={data.url_modified} alt="" className="project-img rounded-md" />
           <div className="overlay">
@@ -65,12 +117,12 @@ export default function Gallery (props:any) {
               </div>
               <div className="flex rounded-xl bg-fifth items-center mr-4 mt-4 p-2  hover:cursor-pointer"> 
                   <Heart className="stroke-fourth size-6 hover:stroke-primary" votes={data.votes} 
-                  action={()=>vote(data.user.id, data.id)} />
+                  action={()=>vote(data.votes, data.id)} />
               </div>
             </div> 
 
             <div className='text-xs px-4 bottom-4 absolute w-full'>
-              <h3 className='font-semibold'>title</h3>
+              <h3 className='font-semibold'>{data.title}</h3>
               <p className='line-clamp-3'>{data.description}</p>
               <p className='text-right hover:cursor-pointer'><button onClick={() => seeDetail( data.id)} className='text-secondary'>See more</button> </p>
             </div> 

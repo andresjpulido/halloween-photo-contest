@@ -6,25 +6,12 @@ import Nav from "../components/Nav"
 
 export default function Dashboard() {
   const [ topImages, setTopImages ] = useState ([]) 
-  const { images, setImages } = React.useContext(AppContext);
-
+   
   useEffect( ()=> { 
 
     const isauth = async () => {
         
-      const url = "/api/image"; 
-      
-        try {
-          const response = await fetch(url);
-          if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
-          }
-          const imagelist  = await response.json();
-          setImages(imagelist) 
-        } catch (error) {
-          console.error(error );
-        }
-
+      const url = "/api/image";  
         try {
           let url = "/api/topimages";
           const response = await fetch(url);
@@ -49,7 +36,7 @@ return (
     <section> 
       <Nav></Nav> 
       <BestPhotos top={topImages} />
-      <Gallery participants={images} /> 
+      <Gallery  /> 
     </section>
 )
 
