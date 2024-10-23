@@ -107,13 +107,13 @@ export default function Gallery (props) {
   <ul className="md:mx-16 projectlist">
     {
       images?.map((data:any, index:any) => (
-        <li className="project" title={data.url_original} key={index}> 
+        <li className="project"   key={index}> 
           <img src={data.url_modified} alt="" className="project-img rounded-md" />
           <div className="overlay">
 
             <div className="flex justify-between">
               <div className="flex items-center pl-4 pt-4 gap-2  hover:cursor-pointer">
-                <div className="rounded-full bg-primary px-2">U</div>
+                <div className="rounded-full bg-primary px-2">{data.user.username.charAt(0)}</div>
                 <div className="text-xs">{data.user.username}</div>
               </div>
               <div className="flex rounded-xl bg-fifth items-center mr-4 mt-4 p-2  hover:cursor-pointer"> 
@@ -124,7 +124,7 @@ export default function Gallery (props) {
 
             <div className='text-xs px-4 bottom-4 absolute w-full'>
               <h3 className='font-semibold'>{data.title}</h3>
-              <p className='line-clamp-3'>{data.description}</p>
+              <p className='line-clamp-3 mb-2'>{data.description}</p>
               <p className='text-right hover:cursor-pointer'><button onClick={() => seeDetail( data.id)} className='text-secondary'>See more</button> </p>
             </div> 
 
