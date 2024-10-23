@@ -15,7 +15,7 @@
     "predev": "swagger-cli bundle src/api/swagger/openapi.yaml --outfile public/swagger.json",
     "doc:generate": "swagger-cli bundle src/api/swagger/openapi.yaml --outfile public/swagger.json",
     "lint": "npm run lint:js ",
-    "lint:eslint": "eslint --ext .ts",
+    "lint:eslint": "eslint",
     "lint:js": "npm run lint:eslint src/",
     "lint:fix": "npm run lint:js -- --fix"
   },

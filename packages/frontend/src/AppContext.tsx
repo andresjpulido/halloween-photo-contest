@@ -10,7 +10,7 @@ const AppContext =  createContext({
 	setuser: (_t: any) => {}, 
 	images: [],
 	setImages: (_t: any) => {},
-	image: {url_original:null, title:null, description:null, user:{username:null}},
+	image: {url_original:null, title:null, description:null, user:{username:"Anonymous"}},
 	setImage: (_t: any) => {},
 	isSigninOpen: false,
 	setIsSigninOpen: (_t: any) => {},

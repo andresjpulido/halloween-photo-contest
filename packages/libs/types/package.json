@@ -9,8 +9,8 @@
   ],
   "module": "./dist/index.js",
   "scripts": {
-    "build": "tsc",
-    "lint": "eslint --ext .ts"
+    "build": "tsc", 
+    "lint:eslint": "eslint --ext .ts"
   },
   "author": "",
   "license": "MIT"

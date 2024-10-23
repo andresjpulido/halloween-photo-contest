@@ -55,7 +55,7 @@ export default function Gallery (props:any) {
     {
       participants?.map((data:any, index:any) => (
         <li className="project" title={data.url_original} key={index}> 
-          <img src={data.url_original} alt="" className="project-img rounded-md" />
+          <img src={data.url_modified} alt="" className="project-img rounded-md" />
           <div className="overlay">
 
             <div className="flex justify-between">
@@ -64,12 +64,12 @@ export default function Gallery (props:any) {
                 <div className="text-xs">{data.user.username}</div>
               </div>
               <div className="flex rounded-xl bg-fifth items-center mr-4 mt-4 p-2  hover:cursor-pointer"> 
-                  <Heart className="stroke-fourth size-6 hover:stroke-primary" votes={data.userimagevoted.length} 
+                  <Heart className="stroke-fourth size-6 hover:stroke-primary" votes={data.votes} 
                   action={()=>vote(data.user.id, data.id)} />
               </div>
             </div> 
 
-            <div className='text-xs px-4 bottom-4 absolute'>
+            <div className='text-xs px-4 bottom-4 absolute w-full'>
               <h3 className='font-semibold'>title</h3>
               <p className='line-clamp-3'>{data.description}</p>
               <p className='text-right hover:cursor-pointer'><button onClick={() => seeDetail( data.id)} className='text-secondary'>See more</button> </p>

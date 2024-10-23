@@ -7,9 +7,9 @@ export default function Profile(){
             <div className="w-full max-w-xs">
                 <SingUpForm />
 
-                <p className="text-center text-gray-500 text-xs">
-                Halloween photo contest
-                </p>
+<p className="text-center text-gray-500 text-xs">
+Halloween photo contest
+</p>
             </div>
         </div>
     )

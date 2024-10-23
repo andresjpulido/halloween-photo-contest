@@ -39,7 +39,7 @@ export default function PhotoDetail( ) {
         return (<div>No image</div>)
 
     const style={ 
-        backgroundImage: 'url(' + image.url_original + ')'
+        backgroundImage: 'url(' + image.url_modified + ')'
     } 
 
     return (

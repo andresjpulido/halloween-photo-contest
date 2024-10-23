@@ -20,7 +20,7 @@ export default function SessionIcon() {
         setIsSigninOpen(!isSigninOpen)
     }
 
-    if(user.username)
+    if(user.username != "Anonymous")
         return (
             <div className='absolute bg-fifth bg-opacity-80 p-2 top-4 right-16'>{user.username} | <button className="text-secondary" onClick={sessionreset} >Logout</button> 
             </div>

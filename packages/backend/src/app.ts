@@ -46,7 +46,9 @@ app.get('/api/image', async (req, res) => {
         .select(`* , 
             user!image_userid_fkey ( id, username ), 
             userimagevoted!id!userid ( imageid, userid )`)
-    
+        .order('votes', { ascending: false })
+        console.log(data)
+
     if (error) 
           res.send(error);
 
@@ -64,7 +66,7 @@ app.get('/api/image/:imageId', async (req, res) => {
             user!image_userid_fkey ( id, username ), 
             userimagevoted!id!userid ( imageid, userid )`)
         .eq('id', imageId)
-        .single()
+        .single() 
 
     if (error) 
           res.send(error);
@@ -73,6 +75,31 @@ app.get('/api/image/:imageId', async (req, res) => {
           res.send(data);
 
     
+});
+
+app.post('/api/image', async(req, res) => {
+
+console.log(req.body)
+
+    const {data, error} = await supabase
+        .from('image')
+        .insert({
+            title: req.body.title,
+            description: req.body.description,
+            url_original: req.body.url_original, 
+            url_modified: req.body.url_modified, 
+            userid: req.body.user?.userid
+        })
+        .select()
+        .single()
+
+    if (error) {
+        console.log(error)
+        res.send(error);
+    }
+
+    console.log("retruning " , data)
+    res.send(data);
 });
 
 app.get('/api/user', async (req, res) => {
@@ -133,7 +160,8 @@ app.get('/api/topimages', async (req, res) => {
     const {data, error} = await supabase
         .from('image')
         .select()
-        .limit(5)
+        .order('votes', { ascending: false })
+        .limit(5) 
     res.send(data);
 });
 
