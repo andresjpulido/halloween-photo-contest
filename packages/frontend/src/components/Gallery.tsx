@@ -7,13 +7,14 @@ import Heart from "./heart"
  
 import { useNavigate } from 'react-router-dom'
 
-export default function Gallery ( ) {
+export default function Gallery (props) {
  
   const { images, setImages } = React.useContext(AppContext);
   const navigate = useNavigate() 
  
   const isauth = async () => {
         
+   
     const url = "/api/image"; 
     
       try {
@@ -52,7 +53,7 @@ export default function Gallery ( ) {
       const json = await response.json();
       
        isauth()
-   
+       props.action()
   
   } catch(err) { 
       console.log('catch error ', err)

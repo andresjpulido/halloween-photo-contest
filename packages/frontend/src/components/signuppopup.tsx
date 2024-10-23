@@ -5,10 +5,10 @@ import SignupForm from './signupForm'
 
 export default function signinpopup(){
     
-    const { setIsSigninOpen } = React.useContext(AppContext);
+    const { setIsSignupOpen } = React.useContext(AppContext);
  
     const quit = ()=>{
-        setIsSigninOpen(false)
+        setIsSignupOpen(false)
     }
 
     return (

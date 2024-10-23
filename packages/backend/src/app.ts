@@ -46,7 +46,7 @@ app.get('/api/image', async (req, res) => {
         .select(`* , 
             user!image_userid_fkey ( id, username ), 
             userimagevoted!id!userid ( imageid, userid )`)
-        .order('votes', { ascending: false })
+       
         console.log(data)
 
     if (error) 
@@ -131,10 +131,7 @@ app.post('/api/signin', async (req, res) => {
 });
 
 app.put('/api/image/:id', async (req, res) => {
-
-console.log("votes " , req.params.id, req.body.votes, )
-
-
+  
     const {error} = await supabase
         .from('image')
         .update({

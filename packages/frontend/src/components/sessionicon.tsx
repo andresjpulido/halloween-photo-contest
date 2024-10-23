@@ -11,13 +11,14 @@ export default function SessionIcon() {
     }
 
     const { isSigninOpen, setIsSigninOpen } = React.useContext(AppContext);
+    const { isSignupOpen, setIsSignupOpen } = React.useContext(AppContext);
  
     const showSignin = ()=>{
         setIsSigninOpen(!isSigninOpen)
     }
 
     const showSignup = ()=>{
-        setIsSigninOpen(!isSigninOpen)
+        setIsSignupOpen(!isSignupOpen)
     }
 
     if(user.username != "Anonymous")

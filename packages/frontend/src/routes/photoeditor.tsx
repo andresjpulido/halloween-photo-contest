@@ -333,8 +333,8 @@ const uploadImage = (files:any) => {
           } 
 
           {
-            urlmodified && 
-              <button className="btn-primary">
+            urlmodified &&  
+              <button className="btn-primary hidden">
                   Download
               </button>
           }

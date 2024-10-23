@@ -6,37 +6,39 @@ import Nav from "../components/Nav"
 
 export default function Dashboard() {
   const [ topImages, setTopImages ] = useState ([]) 
+
+  const vvvv = ( )=>{ 
+    isauth() 
+  }
    
-  useEffect( ()=> { 
 
-    const isauth = async () => {
+  const isauth = async () => {
         
-      const url = "/api/image";  
-        try {
-          let url = "/api/topimages";
-          const response = await fetch(url);
-          if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
-          }
-          let imagelist
-          imagelist = await response.json();
-          setTopImages(imagelist)
-          
-        } catch (error) {
-          console.error(error );
+    const url = "/api/image";  
+      try {
+        let url = "/api/topimages";
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`Response status: ${response.status}`);
         }
-    }
-    
-    isauth()
+        let imagelist
+        imagelist = await response.json();
+        setTopImages(imagelist)
+        
+      } catch (error) {
+        console.error(error );
+      }
+  }
 
-     
+  useEffect( ()=> {   
+    isauth() 
 }, [])
 
 return (
     <section> 
       <Nav></Nav> 
       <BestPhotos top={topImages} />
-      <Gallery  /> 
+      <Gallery action={vvvv} /> 
     </section>
 )
 
