@@ -1,12 +1,12 @@
-import express from 'express';
+import express from 'express'
 import {createClient} from '@supabase/supabase-js'
 import morgan from 'morgan'
-import bodyParser from "body-parser";
-import dotenv from 'dotenv';
+import bodyParser from 'body-parser'
+import dotenv from 'dotenv'
 import cors from 'cors'
 import path from 'path'
 
-const app = express();
+const app = express()
 app.use(cors( ))
 const envFound = dotenv.config()
 
@@ -19,10 +19,10 @@ if (envFound.error) {
 app.use(express.static(path.join(__dirname+'../../../../frontend/dist')))
 
 // using morgan for logs
-app.use(morgan('combined'));
+app.use(morgan('combined'))
 
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.json())
 
 app.use(express.json({
     inflate: true,
@@ -33,9 +33,9 @@ app.use(express.json({
     verify: undefined
 }))
 
-const supabaseUrl = process.env.SUPABASE_URL?process.env.SUPABASE_URL:"" 
-const supabaseKey = process.env.SUPABASE_KEY?process.env.SUPABASE_KEY:""
-console.log("Using", process.env.SUPABASE_URL, process.env.SUPABASE_KEY)
+const supabaseUrl = process.env.SUPABASE_URL?process.env.SUPABASE_URL:'' 
+const supabaseKey = process.env.SUPABASE_KEY?process.env.SUPABASE_KEY:''
+console.log('Using', process.env.SUPABASE_URL, process.env.SUPABASE_KEY)
 const supabase = createClient(supabaseUrl, supabaseKey)
 
 //const supabase =  createClient({ apiKey: '<API_KEY>',  project: '<PROJECT_ID>' });
@@ -47,16 +47,16 @@ app.get('/api/image', async (req, res) => {
             user!image_userid_fkey ( id, username ), 
             userimagevoted!id!userid ( imageid, userid )`)
        
-        console.log(data)
+    console.log(data)
 
     if (error) 
-          res.send(error);
+        res.send(error)
 
     else
-          res.send(data);
+        res.send(data)
 
     
-});
+})
 
 app.get('/api/image/:imageId', async (req, res) => {
     const {imageId} = req.params
@@ -69,17 +69,17 @@ app.get('/api/image/:imageId', async (req, res) => {
         .single() 
 
     if (error) 
-          res.send(error);
+        res.send(error)
 
     else
-          res.send(data);
+        res.send(data)
 
     
-});
+})
 
 app.post('/api/image', async(req, res) => {
 
-console.log(req.body)
+    console.log(req.body)
 
     const {data, error} = await supabase
         .from('image')
@@ -95,19 +95,19 @@ console.log(req.body)
 
     if (error) {
         console.log(error)
-        res.send(error);
+        res.send(error)
     }
 
-    console.log("retruning " , data)
-    res.send(data);
-});
+    console.log('retruning ' , data)
+    res.send(data)
+})
 
 app.get('/api/user', async (req, res) => {
     const {data, error} = await supabase
         .from('user')
         .select( )
-    res.send(data);
-});
+    res.send(data)
+})
 
 app.post('/api/signin', async (req, res) => {
     const {name, username, password} = req.body
@@ -117,18 +117,18 @@ app.post('/api/signin', async (req, res) => {
 
     const {data, error} = await supabase
         .from('user')
-        .select(`*`)
+        .select('*')
         .eq('username', username)
         .eq('password',password)
         .limit(1)
         .single()
     if (error) 
-          res.send(error);
+        res.send(error)
 
     else
-          res.send(data);
+        res.send(data)
 
-});
+})
 
 app.put('/api/image/:id', async (req, res) => {
   
@@ -139,10 +139,10 @@ app.put('/api/image/:id', async (req, res) => {
         })
         .eq('id', req.params.id)
     if (error) {
-        res.send(error);
+        res.send(error)
     }
-    res.send({votes: req.body.votes});
-});
+    res.send({votes: req.body.votes})
+})
 
 app.post('/api/user', async (req, res) => {
     const {name, username, password} = req.body
@@ -151,23 +151,23 @@ app.post('/api/user', async (req, res) => {
         res.status(401)
 
     const {data, error} = await supabase
-    .from('user')
-    .insert({
-        name:  name,
-        username:  username,
-        password:  password,
-    })
-    .select()
-    .single()
+        .from('user')
+        .insert({
+            name:  name,
+            username:  username,
+            password:  password,
+        })
+        .select()
+        .single()
 
     if (error) {
-        res.send(error);
+        res.send(error)
     }
 
-    console.log("retruning " , data)
-    res.send(data);
+    console.log('retruning ' , data)
+    res.send(data)
 
-});
+})
 
 
 app.get('/api/topimages', async (req, res) => {
@@ -176,16 +176,16 @@ app.get('/api/topimages', async (req, res) => {
         .select()
         .order('votes', { ascending: false })
         .limit(5) 
-    res.send(data);
-});
+    res.send(data)
+})
 
 app.get('/api/products/:id', async (req, res) => {
     const {data, error} = await supabase
         .from('products')
         .select()
         .is('id', req.params.id)
-    res.send(data);
-});
+    res.send(data)
+})
 
 app.post('/api/products', async(req, res) => {
     const {error} = await supabase
@@ -196,10 +196,10 @@ app.post('/api/products', async(req, res) => {
             price: req.body.price,
         })
     if (error) {
-        res.send(error);
+        res.send(error)
     }
-    res.send("created!!");
-});
+    res.send('created!!')
+})
 
 app.put('/api/products/:id', async (req, res) => {
     const {error} = await supabase
@@ -211,10 +211,10 @@ app.put('/api/products/:id', async (req, res) => {
         })
         .eq('id', req.params.id)
     if (error) {
-        res.send(error);
+        res.send(error)
     }
-    res.send("updated!!");
-});
+    res.send('updated!!')
+})
 
 app.delete('/api/products/:id', async (req, res) => {
     const {error} = await supabase
@@ -222,14 +222,14 @@ app.delete('/api/products/:id', async (req, res) => {
         .delete()
         .eq('id', req.params.id)
     if (error) {
-        res.send(error);
+        res.send(error)
     }
-    res.send("deleted!!")
+    res.send('deleted!!')
 
-});
+})
  
 app.get('/', (req,res) =>{
-    let tmp = path.join(__dirname+'../../../../frontend/dist/index.html')
+    const tmp = path.join(__dirname+'../../../../frontend/dist/index.html')
     console.log(tmp)
     res.sendFile(tmp)
 })
@@ -237,5 +237,5 @@ app.get('/', (req,res) =>{
  
 
 app.listen(process.env.PORT || 3000, () => {
-    console.log(`> Ready on http://localhost:${process.env.PORT || 3000}`);
-});
+    console.log(`> Ready on http://localhost:${process.env.PORT || 3000}`)
+})

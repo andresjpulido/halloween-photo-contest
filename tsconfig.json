@@ -9,7 +9,7 @@
     "declaration": true,
     "baseUrl": ".",
     "paths": {
-        "@halloweenphotocontest/types": ["./packages/libs/types"] 
+        "@halloweenphotocontest/types": ["packages/libs/src/types"] 
     }
   },
   "references": [

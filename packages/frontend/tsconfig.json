@@ -30,6 +30,6 @@
    
   "references": [
     { "path": "./tsconfig.node.json" }, 
-    { "path": "../libs/types" }
+    { "path": "../libs" }
   ]
 }

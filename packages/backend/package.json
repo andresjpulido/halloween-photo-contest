@@ -14,10 +14,7 @@
     "test": "NODE_TLS_REJECT_UNAUTHORIZED=0 jest --reporters default jest-stare --coverage --detectOpenHandles --no-cache --runInBand --testTimeout=16000",
     "predev": "swagger-cli bundle src/api/swagger/openapi.yaml --outfile public/swagger.json",
     "doc:generate": "swagger-cli bundle src/api/swagger/openapi.yaml --outfile public/swagger.json",
-    "lint": "npm run lint:js ",
-    "lint:eslint": "eslint",
-    "lint:js": "npm run lint:eslint src/",
-    "lint:fix": "npm run lint:js -- --fix"
+    "lint": "eslint src/ --fix "
   },
   "keywords": [
     "d"

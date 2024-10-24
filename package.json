@@ -6,7 +6,7 @@
   "workspaces": [
     "packages/backend",
     "packages/frontend",
-    "packages/libs/types"
+    "packages/libs"
   ],
   "bugs": {
     "url": "https://github.com/andresjpulido/halloweenphotocontest/issues"
@@ -19,7 +19,7 @@
   "scripts": {
     "lint": "npm run lint --workspaces",
     "start": "npm run start --workspace=packages/backend",
-    "build": "npm run build --workspace=packages/libs/types  &&  npm run build --workspace=packages/frontend &&  npm run build --workspace=packages/backend",
+    "build": "npm run build --workspace=packages/libs  &&  npm run build --workspace=packages/frontend &&  npm run build --workspace=packages/backend",
     "test": "npm run test --workspaces",
     "back:dev": "cd packages/backend && npm run dev",
     "front:dev": "cd packages/frontend && npm run dev",

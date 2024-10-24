@@ -4,7 +4,7 @@ import LoginForm from './loginForm'
 
 export default function signinpopup(){
     
-    const { setIsSigninOpen } = React.useContext(AppContext);
+    const { setIsSigninOpen } = React.useContext(AppContext)
  
     const quit = ()=>{
         setIsSigninOpen(false)
@@ -19,13 +19,13 @@ export default function signinpopup(){
                     </div>
                     <h1 className="text-xl font-semibold text-secondary">Login</h1>
 
-            <div className="w-full max-w-xs">
-                <LoginForm></LoginForm>
+                    <div className="w-full max-w-xs">
+                        <LoginForm></LoginForm>
 
-                <p className="text-center text-gray-500 text-xs">
+                        <p className="text-center text-gray-500 text-xs">
                 Halloween photo contest
-                </p>
-            </div>
+                        </p>
+                    </div>
                 </div> 
             </div> 
         </div>

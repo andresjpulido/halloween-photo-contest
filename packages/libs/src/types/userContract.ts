@@ -1,3 +1,3 @@
 export default interface UserContract {
-     username: string 
+                    username: string 
 }

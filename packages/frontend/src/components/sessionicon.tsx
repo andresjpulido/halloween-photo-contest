@@ -1,17 +1,17 @@
 import React from 'react'
  
-import AppContext from "../AppContext"
+import AppContext from '../AppContext'
 
 export default function SessionIcon() {
 
-    const { user, setuser } = React.useContext(AppContext);
+    const { user, setuser } = React.useContext(AppContext)
  
     const sessionreset = ()=> {
         setuser(null)
     }
 
-    const { isSigninOpen, setIsSigninOpen } = React.useContext(AppContext);
-    const { isSignupOpen, setIsSignupOpen } = React.useContext(AppContext);
+    const { isSigninOpen, setIsSigninOpen } = React.useContext(AppContext)
+    const { isSignupOpen, setIsSignupOpen } = React.useContext(AppContext)
  
     const showSignin = ()=>{
         setIsSigninOpen(!isSigninOpen)
@@ -21,7 +21,7 @@ export default function SessionIcon() {
         setIsSignupOpen(!isSignupOpen)
     }
 
-    if(user.username != "Anonymous")
+    if(user.username != 'Anonymous')
         return (
             <div className='absolute bg-fifth bg-opacity-80 p-2 top-4 right-16'>{user.username} | <button className="text-secondary" onClick={sessionreset} >Logout</button> 
             </div>

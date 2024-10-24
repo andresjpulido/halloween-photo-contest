@@ -1,13 +1,13 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */ 
+  
 import React from 'react'
 import { useForm as useFormImport, Resolver } from 'react-hook-form'
  
-import AppContext from "../AppContext"
+import AppContext from '../AppContext'
 
 export default function LoginForm(){
  
-    const {  setIsSigninOpen } = React.useContext(AppContext);
-    const {  setuser } = React.useContext(AppContext);
+    const {  setIsSigninOpen } = React.useContext(AppContext)
+    const {  setuser } = React.useContext(AppContext)
     const useForm = useFormImport
     type FormValues = {
         username: string
@@ -38,11 +38,11 @@ export default function LoginForm(){
     const onSubmit = handleSubmit( async (data:FormValues) => {
 
         try {
-            const response = await fetch("/api/signin", {
+            const response = await fetch('/api/signin', {
                 headers: {
-                    "Content-Type": "application/json",
-                  },
-                  method: "POST", 
+                    'Content-Type': 'application/json',
+                },
+                method: 'POST', 
                 body: JSON.stringify(data)})
 
             if (!response.ok) {
@@ -50,7 +50,7 @@ export default function LoginForm(){
                 console.log(response.status)
             }  
           
-            const json = await response.json(); 
+            const json = await response.json() 
            
             setuser(json)
             console.log('user:: ', json)

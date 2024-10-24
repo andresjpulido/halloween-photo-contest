@@ -1,32 +1,32 @@
  
 import { Link } from 'react-router-dom' 
-import AppContext from "../AppContext"
+import AppContext from '../AppContext'
 import React, {useEffect } from 'react' 
-import { useParams } from 'react-router';
-import "./photo-detail.css"
+import { useParams } from 'react-router'
+import './photo-detail.css'
 
 export default function PhotoDetail( ) {
 
-    const { image, setImage } = React.useContext(AppContext);
+    const { image, setImage } = React.useContext(AppContext)
 
-    const { imageId } = useParams();
+    const { imageId } = useParams()
     
     useEffect( ()=> { 
 
         const isauth = async () => {
             
-          const url = "/api/image/" + imageId; 
+            const url = '/api/image/' + imageId 
           
             try {
-              const response = await fetch(url);
-              if (!response.ok) {
-                throw new Error(`Response status: ${response.status}`);
-              }
-              const result  = await response.json();
-              setImage(result)  
+                const response = await fetch(url)
+                if (!response.ok) {
+                    throw new Error(`Response status: ${response.status}`)
+                }
+                const result  = await response.json()
+                setImage(result)  
 
             } catch (error) {
-              console.error(error );
+                console.error(error )
             } 
         }
         

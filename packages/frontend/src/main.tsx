@@ -6,7 +6,7 @@ import {
     createBrowserRouter,
     RouterProvider,
 } from 'react-router-dom' 
-import AppProvider from "./AppProvider.tsx";
+import AppProvider from './AppProvider.tsx'
 import ErrorPage from './routes/error-page.tsx'
 import Login from './routes/login.tsx'
 import PhotoEditor from './routes/photoeditor.tsx'
@@ -15,43 +15,43 @@ import PhotoDetail from './routes/photo-detail.tsx'
 import Dashboard from './routes/dashboard.tsx'
 
 const router = createBrowserRouter([
-  {
-      path: '/',
-      element: <App />,
-      errorElement: <ErrorPage />,
-      children: [
-        {
-          path: '/',
-          element: <Dashboard />,
-          errorElement: <ErrorPage />,
-        }, 
-        {
-          path: '/photoeditor',
-          element: <PhotoEditor />,
-          errorElement: <ErrorPage />,
-        }, 
-        {
-          path: '/photodetail/:imageId',
-          element: <PhotoDetail />,
-          errorElement: <ErrorPage />,
-        },
-      ]
-  },
-  {
-    path: '/login',
-    element: <Login />,
-    errorElement: <ErrorPage />,
-  }, 
-  {
-    path: '/signup',
-    element: <SignUp />,
-    errorElement: <ErrorPage />,
-  },
+    {
+        path: '/',
+        element: <App />,
+        errorElement: <ErrorPage />,
+        children: [
+            {
+                path: '/',
+                element: <Dashboard />,
+                errorElement: <ErrorPage />,
+            }, 
+            {
+                path: '/photoeditor',
+                element: <PhotoEditor />,
+                errorElement: <ErrorPage />,
+            }, 
+            {
+                path: '/photodetail/:imageId',
+                element: <PhotoDetail />,
+                errorElement: <ErrorPage />,
+            },
+        ]
+    },
+    {
+        path: '/login',
+        element: <Login />,
+        errorElement: <ErrorPage />,
+    }, 
+    {
+        path: '/signup',
+        element: <SignUp />,
+        errorElement: <ErrorPage />,
+    },
   
 ])
 
 
-  ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <AppProvider > 
             <RouterProvider router={router} />

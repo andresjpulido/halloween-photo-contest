@@ -5,7 +5,7 @@ import SignupForm from './signupForm'
 
 export default function signinpopup(){
     
-    const { setIsSignupOpen } = React.useContext(AppContext);
+    const { setIsSignupOpen } = React.useContext(AppContext)
  
     const quit = ()=>{
         setIsSignupOpen(false)
@@ -20,13 +20,13 @@ export default function signinpopup(){
                     </div>
                     <h1 className="text-xl font-semibold text-secondary">Create user</h1>
 
-            <div className="w-full max-w-xs">
-                <SignupForm></SignupForm>
+                    <div className="w-full max-w-xs">
+                        <SignupForm></SignupForm>
 
-                <p className="text-center text-gray-500 text-xs">
+                        <p className="text-center text-gray-500 text-xs">
                 Halloween photo contest
-                </p>
-            </div>
+                        </p>
+                    </div>
                 </div> 
             </div> 
         </div>
